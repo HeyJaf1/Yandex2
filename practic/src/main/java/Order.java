@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 public class Order {
     private WebDriver driver;
 
-    private final By orderButton = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']");
-    private final By orderButton2 = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button");
     //Поле ввод имени
     private final By name = By.xpath(".//input[contains(@placeholder, 'Имя')]");
     private final By surName = By.xpath(".//input[contains(@placeholder, 'Фамилия')]");
@@ -18,7 +16,7 @@ public class Order {
     public Order(WebDriver driver) { this.driver = driver; }
 
     //кликнуть Заказать
-    public void clickOrder(String userName, String surname, String address, String phoneNumber) {
+    public void clickOrder(By orderButton, String userName, String surname, String address, String phoneNumber) {
         driver.findElement(orderButton).isEnabled();
         driver.findElement(orderButton).click();
         //проверяем есть ли поле имя

@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(Parameterized.class)
 public class OrderTest {
     private WebDriver driver;
+    private static By orderButton;
 
     private static String name;
     private static String surname;
@@ -22,18 +23,19 @@ public class OrderTest {
     private final By notification = By.xpath(".//div[@class='Order_ModalHeader__3FDaJ']");
 
 
-    public OrderTest(String name, String surname, String address, String phoneNumber) {
+    public OrderTest(By orderButton, String name, String surname, String address, String phoneNumber) {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.orderButton = orderButton;
     }
 
     @Parameterized.Parameters
     public static Object [][] getCredentials(){
         return new Object[][] {
-                {"Иванов", "Иван", "Москва", "89000000000"},
-                {"Романов", "Роман", "Москва", "89000066600"}
+                {MainPage.orderButtonTop, "Иванов", "Иван", "Москва", "89000000000"},
+                {MainPage.orderButtonMiddle, "Романов", "Роман", "Москва", "89000066600"}
         };
     }
 
@@ -48,7 +50,7 @@ public class OrderTest {
     @Test
     public void makeAnOrder() {
         Order order = new Order(driver);
-        order.clickOrder(name, surname, address, phoneNumber);
+        order.clickOrder(orderButton ,name, surname, address, phoneNumber);
         OrderRent orderRent = new OrderRent(driver);
         orderRent.rent("1", "Нормально" );
         assertTrue(driver.findElement(notification).isDisplayed());

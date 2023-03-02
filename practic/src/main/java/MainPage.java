@@ -14,6 +14,11 @@ public class MainPage {
 
     private final By importantQuestions = By.xpath(".//div[text()='Вопросы о важном']");
 
+    //кнопка "Заказать" в верхней части страницы
+    public static By orderButtonTop = By.xpath(".//div[@class='Header_Nav__AGCXC']/button[text()='Заказать']");
+    //"Заказать" в нижней части страницы
+    public static By orderButtonMiddle = By.xpath(".//div[@class='Home_FinishButton__1_cWm']/button");
+
     //кнопка для принятий кук
     private final By cookieButton = By.id("rcc-confirm-button");
 
